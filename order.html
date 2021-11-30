@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Club</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a class="text-header" href="/">Inicio</a></li>
+                <li><a class="text-header" href="catalogue.html">Catalogo</a></li>
+                <li><a class="text-header" href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside>
+            <img src="Images/logo.png" alt="Es un Pescadito." title="Logo Club de Pesca.">
+        </aside>
+        <article>
+            <div id="article-title">
+                <h1>Pedido</h1>
+                <a id="back-button" href="catalogue.html">Volver</a>
+            </div>
+            <div id="article-content">
+                <div class="order-selected">
+                    <img class="order-product-image"
+                        src="https://pecesbettas.site/wp-content/uploads/pez-betta-media-luna-foto.jpg" alt="Betta">
+                    <div class="order-element-information">
+                        <div class="title">
+                        </div>
+                        <div class="price"></div>
+                    </div>
+                    <input class="order-buttons" form="form" type="submit" value="Confirmar Pedido">
+                </div>
+                <form action='https://jkorpela.fi/cgi-bin/echo.cgi' method='POST' id="form">
+                    <div class="input-group">
+                        <input class="input" type="text" name="first-name" id="first-name" placeholder="Nombre">
+                        <input class="input" type="text" name="last-name" id="last-name" placeholder="Apellido">
+                        <input class="input" type="text" name="direction" id="direction" placeholder="Direccion">
+                        <input class="input" type="text" name="province" id="province" placeholder="Provincia">
+                        <input class="input" type="text" name="country" id="country" placeholder="Pais">
+                        <input class="input" type="text" name="Depto/Piso" id="Depto/Piso" placeholder="Depto/Piso">
+                        <input class="input" type="email" name="mail" id="mail" placeholder="Correo Electronico">
+                        <input class="input" type="tel" name="Telefono" id="Telefono" placeholder="Telefono">
+                        <input class="input" type="number" name=" Elemento a comprar" id="Elementos a comprar"
+                            placeholder="Elemento a comprar">
+                    </div>
+                    <input class="order-buttons" form="form" type="reset" value="Limpiar Campos">
+                </form>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="catalogue.html">Catalogo</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const order = localStorage.getItem("order")
+        if (order) {
+            const catalogueorder = JSON.parse(order);
+            const orderselected = document.querySelector(".order-selected");
+            orderselected.querySelector(".title").innerText = catalogueorder.title;
+            orderselected.querySelector(".price").innerText = catalogueorder.price;
+            const img = orderselected.querySelector("img");
+            img.setAttribute("src", `${catalogueorder.id}`);
+        }
+    });
+</script>
+
+</html>
