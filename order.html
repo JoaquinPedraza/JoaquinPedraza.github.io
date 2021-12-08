@@ -39,21 +39,105 @@
                     </div>
                     <input class="order-buttons" form="form" type="submit" value="Confirmar Pedido">
                 </div>
-                <form action='https://jkorpela.fi/cgi-bin/echo.cgi' method='POST' id="form">
-                    <div class="input-group">
-                        <input class="input" type="text" name="first-name" id="first-name" placeholder="Nombre">
-                        <input class="input" type="text" name="last-name" id="last-name" placeholder="Apellido">
-                        <input class="input" type="text" name="direction" id="direction" placeholder="Direccion">
-                        <input class="input" type="text" name="province" id="province" placeholder="Provincia">
-                        <input class="input" type="text" name="country" id="country" placeholder="Pais">
-                        <input class="input" type="text" name="Depto/Piso" id="Depto/Piso" placeholder="Depto/Piso">
-                        <input class="input" type="email" name="mail" id="mail" placeholder="Correo Electronico">
-                        <input class="input" type="tel" name="Telefono" id="Telefono" placeholder="Telefono">
-                        <input class="input" type="number" name=" Elemento a comprar" id="Elementos a comprar"
-                            placeholder="Elemento a comprar">
-                    </div>
-                    <input class="order-buttons" form="form" type="reset" value="Limpiar Campos">
-                </form>
+                <div class="article-form">
+                    <form action='https://jkorpela.fi/cgi-bin/echo.cgi' method='POST' class="form" id="form" novalidate>
+
+                        <!-- Grupo: firstname -->
+                        <div class="form-group" id="firstname_input">
+                            <label for="firstname" class="form-label">Nombre</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="firstname" id="firstname">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Solo puede contener letras y espacios y debe ser entre 1 y 40
+                                caracteres.</p>
+                        </div>
+
+                        <!-- Grupo: lastname -->
+                        <div class="form-group" id="lastname_input">
+                            <label for="lastname" class="form-label">Apellido</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="lastname" id="lastname">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Solo puede contener letras y espacios y debe ser entre 1 y 40
+                                caracteres.</p>
+                        </div>
+
+                        <!-- Grupo: direction -->
+                        <div class="form-group" id="direction_input">
+                            <label for="direction" class="form-label">Direccion</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="direction" id="direction">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Ingrese una direccion valida.</p>
+                        </div>
+
+                        <!-- Grupo: province -->
+                        <div class="form-group" id="province_input">
+                            <label for="province" class="form-label">Provincia</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="province" id="province">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Solo puede contener letras y espacios y debe ser entre 1 y 40
+                                caracteres.</p>
+                        </div>
+
+                        <!-- Grupo: country -->
+                        <div class="form-group" id="country_input">
+                            <label for="country" class="form-label">País</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="country" id="country">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Solo puede contener letras y espacios y debe ser entre 1 y 40
+                                caracteres.</p>
+                        </div>
+
+                        <!-- Grupo: departament -->
+                        <div class="form-group" id="departament_input">
+                            <label for="departament" class="form-label">Departamento / Piso (opcional)</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="departament" id="departament">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Ingrese un Departamento / Piso valido.</p>
+                        </div>
+
+                        <!-- Grupo: email -->
+                        <div class="form-group" id="email_input">
+                            <label for="email" class="form-label">Correo</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="email" name="email" id="email">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Ingrese un correo valido.</p>
+                        </div>
+
+                        <!-- Grupo: phone -->
+                        <div class="form-group" id="phone_input">
+                            <label for="phone" class="form-label">Telefono</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="phone" id="phone">
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">El numero debe contener 14 digitos.</p>
+                        </div>
+
+                        <!-- Grupo: item -->
+                        <div class="form-group" id="item_input">
+                            <label for="item" class="form-label">Producto</label>
+                            <div class="form-group-input">
+                                <input class="form-input" type="text" name="item" id="item" readonly>
+                                <i class="form-valid-state fas fa-times-circle"></i>
+                            </div>
+                            <p class="form-input-error">Mensaje de error de item.</p>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </article>
     </main>
@@ -68,18 +152,8 @@
     </footer>
 
 </body>
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-        const order = localStorage.getItem("order")
-        if (order) {
-            const catalogueorder = JSON.parse(order);
-            const orderselected = document.querySelector(".order-selected");
-            orderselected.querySelector(".title").innerText = catalogueorder.title;
-            orderselected.querySelector(".price").innerText = catalogueorder.price;
-            const img = orderselected.querySelector("img");
-            img.setAttribute("src", `${catalogueorder.id}`);
-        }
-    });
-</script>
+
+<script src="order.js"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 
 </html>

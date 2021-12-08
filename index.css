@@ -17,6 +17,7 @@ header {
   width: 100%;
   background-color: #0d102d;
   padding: 15px;
+  z-index: 10;
 }
 
 nav a:visited,
@@ -138,6 +139,10 @@ article > p {
 }
 
 /*======================================STYLE ORDER===============================*/
+:root {
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+}
 
 #article-title {
   display: flex;
@@ -153,8 +158,13 @@ article > p {
   justify-content: space-between;
 }
 
+.article-form {
+  flex: 1;
+  margin-right: 2em;
+}
+
 .order-selected {
-  max-width: 50%;
+  max-width: 30%;
   display: flex;
   flex-direction: column;
 }
@@ -162,8 +172,8 @@ article > p {
 .order-product-image {
   display: block;
   margin: 0 auto;
-  width: 90%;
-  height: 50%;
+  width: 100%;
+  height: 40%;
   object-fit: cover;
   border-radius: 1em;
   box-shadow: 2px 2px 0.2px rgb(0 0 0 / 30%);
@@ -180,22 +190,76 @@ article > p {
   flex: 1;
 }
 
-#form {
-  display: flex;
-  flex-direction: column;
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.input-group {
-  flex: 1;
-}
-
-.input {
-  display: flex;
-  width: 200px;
+.form-label {
+  font-size: 18px;
+  display: block;
+  font-weight: 700;
   padding: 10px;
-  margin-bottom: 1em;
-  border: solid 1px #0f1934;
+  cursor: pointer;
+}
+.form-group-input {
+  position: relative;
+  z-index: 0;
+}
+
+.form-input {
+  width: 70%;
+  background: #fff;
+  border: 3px solid transparent;
   border-radius: 3px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 40px 0 10px;
+  transition: 0.3s ease all;
+}
+
+.form-input:focus {
+  border: 3px solid #0075ff;
+  outline: none;
+  box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+}
+
+.form-input-error {
+  font-size: 14px;
+  margin: 5px 0 0 0;
+  color: var(--error-color);
+  display: none;
+}
+
+.form-input-error-activo {
+  display: block;
+}
+.form-valid-state {
+  width: 16px;
+  position: absolute;
+  left: 250px;
+  bottom: 17px;
+  z-index: 5;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.form-group-success .form-valid-state {
+  color: green;
+  opacity: 1;
+}
+.form-group-error .form-label {
+  color: var(--error-color);
+}
+
+.form-group-error .form-valid-state {
+  color: var(--error-color);
+  opacity: 1;
+}
+
+.form-group-error .form-input {
+  border: 3px solid var(--error-color);
 }
 
 .order-buttons {
@@ -206,6 +270,7 @@ article > p {
   border: none;
   border-radius: 3px;
   box-shadow: 1px 1px 0.2px rgb(0 0 0 / 30%);
+  cursor: pointer;
 }
 
 #back-button:visited,
@@ -217,4 +282,10 @@ article > p {
   border: none;
   border-radius: 3px;
   box-shadow: 1px 1px 0.2px rgb(0 0 0 / 30%);
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
 }
